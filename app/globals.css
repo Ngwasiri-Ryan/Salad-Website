@@ -19,3 +19,16 @@ body {
     @apply block px-4 py-2 text-gray-700 hover:bg-blue-100 transition duration-300;
   }
   
+  @keyframes rotateRing {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-rotateRing {
+    animation: rotateRing 10s linear infinite;
+  }
+  

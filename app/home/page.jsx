@@ -52,16 +52,28 @@ export default function HomePage() {
 
         {/* Right Section (Image on Background) */}
         <div className="relative flex justify-center items-center w-1/2">
-          {/* Foreground SVG Image */}
-          {selectedSalad && selectedSalad.image ? (
+          {/* Container for Rotating Ring */}
+          <div className="relative flex justify-center items-center">
+            {/* Main Image (Center of the Ring) */}
             <img 
-              src={selectedSalad.image} 
+              src={selectedSalad?.image || "/default-image.png"} 
               alt="Product Image" 
               className="relative h-[650px] w-auto max-w-full object-contain transition-all duration-700 ease-in-out"
             />
-          ) : (
-            <div className="text-center text-xl text-gray-500">No image available</div>
-          )}
+            {/* Ring with 6 Smaller Images */}
+            <div className="absolute w-[650px] h-[650px] rounded-full border-4 border-gray-500 animate-rotateRing">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                {selectedSalad?.ringImages?.map((image, index) => (
+                  <img 
+                    key={index} 
+                    src={image}  // Use the dynamic ring images
+                    alt={`Ring Image ${index + 1}`}
+                    className={`absolute w-[80px] h-[80px] object-contain transform rotate-[${60 * index}deg] translate-x-[200px]`} // Evenly spaced
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
