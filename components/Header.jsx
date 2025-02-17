@@ -32,7 +32,7 @@ export default function Header() {
   return (
     <nav
       className={`bg-transparent fixed top-0 left-0 w-full z-50 transition-all py-2 ${
-        isSticky ? "bg-white shadow-lg bg-primary" : ""
+        isSticky ? "bg-white shadow-lg " : ""
       }`}
     >
       <div className="max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8">

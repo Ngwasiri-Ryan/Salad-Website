@@ -2,20 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+:root {
+  --font-roboto: "Roboto", sans-serif;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roboto);
 }
+.nav-link {
+    @apply text-gray-700 hover:text-blue-600 transition duration-300;
+  }
+  
+  .nav-link-mobile {
+    @apply block px-4 py-2 text-gray-700 hover:bg-blue-100 transition duration-300;
+  }
+  
