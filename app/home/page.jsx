@@ -4,12 +4,13 @@ import Menu from "@/components/Menu";
 import SaladCard from "@/components/SaladCard";
 import Timer from "@/components/Timer";
 import { useSaladContext } from "@/hooks/salad-store";
+import salads from "@/data/data";
 
 export default function HomePage() {
   const { selectedSalad } = useSaladContext();
 
-  // Log the selectedSalad to check its value
-  console.log('Selected Salad:', selectedSalad);
+  // Find the selected salad from the salads array
+  const selectedSaladData = salads.find(salad => salad.id === selectedSalad?.id);
 
   return (
     <div className="relative flex h-screen overflow-x-hidden">
@@ -33,7 +34,7 @@ export default function HomePage() {
           </p>
 
           <div className='mb-9'>
-            <Pricer price={199.99} currency="USD" />
+            <Pricer price={selectedSaladData?.price || 'N/A'} currency="USD" />
           </div>
 
           {/* Menu Component */}
@@ -42,7 +43,7 @@ export default function HomePage() {
 
         {/* Salad Card Component */}
         <div className="translate-x-70 absolute translate-y-[150px] transition-all duration-700 ease-in-out">
-          <SaladCard selectedSalad={selectedSalad} /> {/* Pass selectedSalad as prop */}
+          <SaladCard selectedSalad={selectedSaladData} /> {/* Pass selectedSaladData as prop */}
         </div>
 
         {/* Timer Component */}
@@ -56,20 +57,27 @@ export default function HomePage() {
           <div className="relative flex justify-center items-center">
             {/* Main Image (Center of the Ring) */}
             <img 
-              src={selectedSalad?.image || "/default-image.png"} 
+              src={selectedSaladData?.image || "/default-image.png"} 
               alt="Product Image" 
               className="relative h-[650px] w-auto max-w-full object-contain transition-all duration-700 ease-in-out"
             />
-            {/* Ring with 6 Smaller Images */}
-            <div className="absolute w-[650px] h-[650px] rounded-full border-4 border-gray-500 animate-rotateRing">
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                {selectedSalad?.ringImages?.map((image, index) => (
-                  <img 
+            {/* Ring with Circular Divs */}
+            <div className="absolute w-[650px] h-[650px] rounded-full">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-rotate">
+                {selectedSaladData?.ringImages?.map((image, index) => (
+                  <div 
                     key={index} 
-                    src={image}  // Use the dynamic ring images
-                    alt={`Ring Image ${index + 1}`}
-                    className={`absolute w-[80px] h-[80px] object-contain transform rotate-[${60 * index}deg] translate-x-[200px]`} // Evenly spaced
-                  />
+                    className={`absolute w-[140px] h-[140px]`} 
+                    style={{
+                      transform: `rotate(${60 * index}deg) translateX(300px)`,  // Increased radius from 200px to 300px
+                    }}
+                  >
+                    <img 
+                      src={image} 
+                      alt={`Ring Image ${index + 1}`} 
+                      className="w-full h-full object-contain rounded-full"
+                    />
+                  </div>
                 ))}
               </div>
             </div>

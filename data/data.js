@@ -42,12 +42,12 @@ const salads = [
       prepTime: '4-5 mins',
       rating: 4.6,
       ringImages: [
-        '/fruit-salad-ring1.png',
-        '/fruit-salad-ring2.png',
-        '/fruit-salad-ring3.png',
-        '/fruit-salad-ring4.png',
-        '/fruit-salad-ring5.png',
-        '/fruit-salad-ring6.png'
+        '/fruit-salad/ring1.png',
+        '/fruit-salad/ring2.png',
+        '/fruit-salad/ring3.png',
+        '/fruit-salad/ring4.png',
+        '/fruit-salad/ring5.png',
+        '/fruit-salad/ring6.png'
       ],
     },
     {

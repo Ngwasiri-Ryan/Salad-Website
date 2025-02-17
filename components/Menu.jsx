@@ -31,7 +31,7 @@ const Menu = () => {
           <SwiperSlide key={salad.id}>
             <div
               className={`flex flex-col items-center p-4 rounded-full w-32 bg-white shadow-md cursor-pointer 
-                ${selectedItem === index ? 'bg-orange-400 text-white shadow-lg' : ''}`}
+                ${selectedItem === index ? 'bg-orange-500 text-white shadow-lg' : ''}`}
               onClick={() => {
                 setSelectedItem(index);
                 setSelectedSalad(salad); // Update the context with the selected salad

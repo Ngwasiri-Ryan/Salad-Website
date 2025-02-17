@@ -32,3 +32,34 @@ body {
     animation: rotateRing 10s linear infinite;
   }
   
+
+  @keyframes orbitAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-orbit {
+    animation: orbitAnimation 20s linear infinite;
+  }
+
+
+  /* Add this CSS to your global styles or in the component's styles */
+/* Add this CSS to your global styles or in the component's styles */
+
+/* Continuous rotation for the ring images */
+@keyframes rotateRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate {
+  animation: rotateRing 10s linear infinite; /* Adjust speed as needed */
+}
