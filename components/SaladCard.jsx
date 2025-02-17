@@ -12,12 +12,9 @@ const SaladCard = () => {
   return (
     <div className="w-full max-w-xs bg-[#A0C06B] rounded-lg shadow-xl hover:shadow-xl transition-shadow duration-300">
       {/* Card Content */}
-      <div className="p-6">
+      <div className="p-6 px-10">
         {/* Name */}
-        <h3 className="text-2xl font-bold text-white">{selectedSalad.name}</h3>
-
-        {/* Price */}
-        <h2 className="mt-2 text-gray-900 text-2xl">{selectedSalad.price}</h2>
+        <h3 className="text-2xl font-bold text-gray-900">${selectedSalad.price}</h3>
       </div>
     </div>
   );

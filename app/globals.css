@@ -12,54 +12,10 @@ body {
   font-family: var(--font-roboto);
 }
 .nav-link {
-    @apply text-gray-700 hover:text-blue-600 transition duration-300;
+    @apply text-gray-700 hover:text-[#fb923c] transition duration-300;
   }
   
   .nav-link-mobile {
     @apply block px-4 py-2 text-gray-700 hover:bg-blue-100 transition duration-300;
   }
   
-  @keyframes rotateRing {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .animate-rotateRing {
-    animation: rotateRing 10s linear infinite;
-  }
-  
-
-  @keyframes orbitAnimation {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .animate-orbit {
-    animation: orbitAnimation 20s linear infinite;
-  }
-
-
-  /* Add this CSS to your global styles or in the component's styles */
-/* Add this CSS to your global styles or in the component's styles */
-
-/* Continuous rotation for the ring images */
-@keyframes rotateRing {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-rotate {
-  animation: rotateRing 10s linear infinite; /* Adjust speed as needed */
-}

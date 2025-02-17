@@ -1,21 +1,30 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BiShoppingBag } from 'react-icons/bi';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { useSaladContext } from '@/hooks/salad-store';
 
-const Pricer = ({ price, currency = 'USD' }) => {
+const Pricer = ({ currency = 'USD' }) => {
+  const { selectedSalad } = useSaladContext();
   const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(0);
 
-  // Format the price using the Intl.NumberFormat API
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currency,
-  }).format(price);
+  useEffect(() => {
+    console.log("Selected Salad:", selectedSalad); // Log entire object
+    console.log("Selected Price:", selectedSalad?.price); // Log the price
+
+    if (selectedSalad && typeof selectedSalad.price === 'number') {
+      setPrice(selectedSalad.price);
+      setQuantity(1); // Reset quantity when a new salad is selected
+    } else {
+      setPrice(0); // Ensure price is never NaN
+    }
+  }, [selectedSalad]);
 
   // Calculate total price
-  const totalPrice = price * quantity;
+  const totalPrice = (selectedSalad?.price || 0) * quantity;
 
-  // Format the total price
+  // Format price
   const formattedTotalPrice = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: currency,
@@ -34,8 +43,7 @@ const Pricer = ({ price, currency = 'USD' }) => {
         <div className="flex items-center space-x-4 border border-gray-400 rounded-[50px] p-1 px-2 w-[140px] justify-center transition-all duration-500 ease-in-out">
           <div className="w-full justify-between flex flex-row">
             <button
-              onClick={() => setQuantity(quantity - 1)}
-              disabled={quantity <= 1}
+              onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
               className="p-2 rounded-full text-black disabled:opacity-50"
             >
               <FaMinus className="text-black" />
@@ -46,7 +54,7 @@ const Pricer = ({ price, currency = 'USD' }) => {
             </div>
 
             <button
-              onClick={() => setQuantity(quantity + 1)}
+              onClick={() => setQuantity((prev) => prev + 1)}
               className="p-2 rounded-full"
             >
               <FaPlus className="text-black" />
